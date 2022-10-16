@@ -69,7 +69,7 @@ class BinarySearchTree {
 		}
 		if (data < this.data) {
 			Object.assign(this.left, this.left.remove(data))
-			console.log(this.data)
+			//console.log(this.data)
 		} else if (data > this.data) {
 			Object.assign(this.right, this.right.remove(data))
 		} else if (this.left !== null && this.right !== null) {
@@ -81,7 +81,7 @@ class BinarySearchTree {
 			} else if (this.right !== null) {
 				Object.assign(this, this.right)
 			} else {
-				Object.assign(this, new BinarySearchTree())
+				Object.assign(this, new BinarySearchTree(null))
 			}
 			return this
 
