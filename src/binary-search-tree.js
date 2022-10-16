@@ -84,6 +84,7 @@ class BinarySearchTree {
 				Object.assign(this, new BinarySearchTree())
 			}
 			return this
+
 		}
 	}
 
