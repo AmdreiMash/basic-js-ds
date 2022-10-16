@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { Node } = require('../extensions/list-tree.js');
+const { Node } = require('../extensions/list-tree.js');
 
 /**
 * Implement simple binary search tree according to task description
@@ -40,7 +40,7 @@ class BinarySearchTree {
 	}
 
 	has(data) {
-		if (data === this.data) {
+		if (data == this.data) {
 			return true
 		} else if (data > this.data && this.right !== null) {
 			return this.right.has(data)
@@ -61,22 +61,47 @@ class BinarySearchTree {
 		} else {
 			return null
 		}
-
 	}
 
-	remove(/* data */) {
-		throw new NotImplementedError('Not implemented');
-		// remove line with error and write your code here
+	remove(data) {
+		if (this === null) {
+			return this
+		}
+		if (data < this.data) {
+			Object.assign(this.left, this.left.remove(data))
+			console.log(this.data)
+		} else if (data > this.data) {
+			Object.assign(this.right, this.right.remove(data))
+		} else if (this.left !== null && this.right !== null) {
+			this.data = this.right.min()
+			Object.assign(this.right, this.right.remove(this.data))
+		} else {
+			if (this.left !== null) {
+				Object.assign(this, this.left)
+			} else if (this.right !== null) {
+				Object.assign(this, this.right)
+			} else {
+				Object.assign(this, new BinarySearchTree())
+			}
+			return this
+		}
 	}
+
 
 	min() {
-		throw new NotImplementedError('Not implemented');
-		// remove line with error and write your code here
+		if (this.left === null) {
+			return this.data
+		} else {
+			return this.left.min()
+		}
 	}
 
 	max() {
-		throw new NotImplementedError('Not implemented');
-		// remove line with error and write your code here
+		if (this.right === null) {
+			return this.data
+		} else {
+			return this.right.max()
+		}
 	}
 }
 
